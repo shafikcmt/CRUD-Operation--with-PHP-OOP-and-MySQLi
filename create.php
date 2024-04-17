@@ -4,11 +4,24 @@
 
     if(isset($_POST['submit'])){
       $name = $_POST['name'];
-      $name = $_POST['name'];
-      $name = $_POST['name'];
+      $roll = $_POST['roll'];
+      $course = $_POST['course'];
+
+      if($name == ""||$roll==""||$course==""){
+        $error = "<div class='alert alert-danger'>Feild must not be Empty!</div>";
+      }else{
+        $query = "INSERT INTO tbl_users(name,roll,course)values('$name','$roll','$course')";
+        $create = $db->insert($query);
+      }
+
     }
  ?> 
  <div class="card-body">
+  <?php
+  if(isset($error)){
+    echo $error;
+  }
+  ?>
  <form action="" method="POST">
   <div class="mb-3 mt-3">
     <label for="name" class="form-label">Name</label>

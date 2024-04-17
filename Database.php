@@ -18,5 +18,14 @@ class Database{
             return false;
         }
     }
+
+    public function insert($data){
+        $row = $this->link->query($data) or die($this->link->error.__LINE__);
+        if($row){
+            header('location:index.php?msg='.urlencode('Data Successfully Inserted!'));
+        }else{
+            die('Error '.$this->link->errno .")".$this->link->error);
+        }
+    }
 }
 ?>
