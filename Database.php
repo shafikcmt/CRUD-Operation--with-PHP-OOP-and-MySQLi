@@ -18,13 +18,22 @@ class Database{
             return false;
         }
     }
-
+    // Insert Opration
     public function insert($data){
         $row = $this->link->query($data) or die($this->link->error.__LINE__);
         if($row){
             header('location:index.php?msg='.urlencode('Data Successfully Inserted!'));
         }else{
             die('Error '.$this->link->errno .")".$this->link->error);
+        }
+    }
+    // Select Operation
+    public function select($data){
+        $result = $this->link->query($data) or die($this->link->error.__LINE__);
+        if($result->num_rows > 0){
+            return $result;
+        }else{
+            return false;
         }
     }
 }
